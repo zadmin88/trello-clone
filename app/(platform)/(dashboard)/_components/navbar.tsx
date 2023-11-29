@@ -24,11 +24,15 @@ export const Navbar = () => {
           Create
         </Button>
         {/* </FormPopover> */}
-        {/* <FormPopover>
-          <Button variant="primary" size="sm" className="rounded-sm block md:hidden">
-            <Plus className="h-4 w-4" />
-          </Button>
-        </FormPopover> */}
+        {/* <FormPopover> */}
+        <Button
+          variant="primary"
+          size="sm"
+          className="rounded-sm block md:hidden"
+        >
+          <Plus className="h-4 w-4" />
+        </Button>
+        {/* </FormPopover> */}
       </div>
       <div className="ml-auto flex items-center gap-x-2">
         <OrganizationSwitcher
