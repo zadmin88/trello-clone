@@ -32,23 +32,23 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   //     };
   //   }
 
-  //   const { title, image } = data;
-  const { title } = data;
+  const { title, image } = data;
+  // const { title } = data;
 
-  //   const [imageId, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] =
-  //     image.split("|");
+  const [imageId, imageThumbUrl, imageFullUrl, imageLinkHTML, imageUserName] =
+    image.split("|");
 
-  //   if (
-  //     !imageId ||
-  //     !imageThumbUrl ||
-  //     !imageFullUrl ||
-  //     !imageUserName ||
-  //     !imageLinkHTML
-  //   ) {
-  //     return {
-  //       error: "Missing fields. Failed to create board.",
-  //     };
-  //   }
+  if (
+    !imageId ||
+    !imageThumbUrl ||
+    !imageFullUrl ||
+    !imageUserName ||
+    !imageLinkHTML
+  ) {
+    return {
+      error: "Missing fields. Failed to create board.",
+    };
+  }
 
   let board;
 
@@ -56,12 +56,12 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     board = await db.board.create({
       data: {
         title,
-        // orgId,
-        // imageId,
-        // imageThumbUrl,
-        // imageFullUrl,
-        // imageUserName,
-        // imageLinkHTML,
+        orgId,
+        imageId,
+        imageThumbUrl,
+        imageFullUrl,
+        imageUserName,
+        imageLinkHTML,
       },
     });
 
