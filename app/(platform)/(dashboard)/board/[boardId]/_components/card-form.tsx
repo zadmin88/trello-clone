@@ -7,10 +7,10 @@ import { useParams } from "next/navigation";
 import { useOnClickOutside, useEventListener } from "usehooks-ts";
 
 import { useAction } from "@/hooks/use-action";
-// import { createCard } from "@/actions/create-card";
+import { createCard } from "@/actions/create-card";
 import { Button } from "@/components/ui/button";
 import { FormSubmit } from "@/components/form/form-submit";
-// import { FormTextarea } from "@/components/form/form-textarea";
+import { FormTextarea } from "@/components/form/form-textarea";
 
 interface CardFormProps {
   listId: string;
@@ -24,15 +24,15 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
     const params = useParams();
     const formRef = useRef<ElementRef<"form">>(null);
 
-    //   const { execute, fieldErrors } = useAction(createCard, {
-    //     onSuccess: (data) => {
-    //       toast.success(`Card "${data.title}" created`);
-    //       formRef.current?.reset();
-    //     },
-    //     onError: (error) => {
-    //       toast.error(error);
-    //     },
-    //   });
+    const { execute, fieldErrors } = useAction(createCard, {
+      onSuccess: (data) => {
+        toast.success(`Card "${data.title}" created`);
+        formRef.current?.reset();
+      },
+      onError: (error) => {
+        toast.error(error);
+      },
+    });
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -57,7 +57,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
       const listId = formData.get("listId") as string;
       const boardId = params.boardId as string;
 
-      // execute({ title, listId, boardId });
+      execute({ title, listId, boardId });
     };
 
     if (isEditing) {
@@ -67,13 +67,13 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
           action={onSubmit}
           className="m-1 py-0.5 px-1 space-y-4"
         >
-          {/* <FormTextarea
-          id="title"
-          onKeyDown={onTextareakeyDown}
-          ref={ref}
-          placeholder="Enter a title for this card..."
-          errors={fieldErrors}
-        /> */}
+          <FormTextarea
+            id="title"
+            onKeyDown={onTextareakeyDown}
+            ref={ref}
+            placeholder="Enter a title for this card..."
+            errors={fieldErrors}
+          />
           <input hidden id="listId" name="listId" value={listId} />
           <div className="flex items-center gap-x-1">
             <FormSubmit>Add card</FormSubmit>
