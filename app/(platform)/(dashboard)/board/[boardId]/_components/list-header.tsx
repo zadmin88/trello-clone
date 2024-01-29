@@ -84,7 +84,7 @@ export const ListHeader = ({ data, onAddCard }: ListHeaderProps) => {
             ref={inputRef}
             onBlur={onBlur}
             id="title"
-            placeholder="Enter list title.."
+            placeholder="Enter list..."
             defaultValue={title}
             className="text-sm px-[7px] py-1 h-7 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-white"
           />
