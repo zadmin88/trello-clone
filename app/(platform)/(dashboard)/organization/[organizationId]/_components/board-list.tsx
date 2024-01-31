@@ -55,7 +55,6 @@ export const BoardList = async () => {
           >
             <p className="text-sm">Create new board</p>
             <span className="text-xs">
-              {/* {`${MAX_FREE_BOARDS - availableCount} remaining`} */}
               {isPro
                 ? "Unlimited"
                 : `${MAX_FREE_BOARDS - availableCount} remaining`}
